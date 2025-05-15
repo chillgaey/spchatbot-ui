@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chatbot</title>
+  <title>Embedded Chatbot</title>
   <style>
     body {
       font-family: sans-serif;
@@ -11,11 +11,41 @@
       padding: 0;
     }
 
+    #chatbot-toggle {
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      cursor: pointer;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    #chatbot-container {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 320px;
+      height: 400px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+
     #chatbox {
-      height: 90vh;
+      flex: 1;
+      padding: 10px;
       overflow-y: auto;
       background-color: #f9f9f9;
-      padding: 10px;
       white-space: pre-wrap;
     }
 
@@ -38,16 +68,26 @@
 </head>
 <body>
 
-<div id="chatbox"></div>
-<div id="chat-controls">
-  <input type="text" id="userInput" placeholder="Type your message..." />
-  <button id="sendBtn">Send</button>
+<button id="chatbot-toggle">💬</button>
+
+<div id="chatbot-container">
+  <div id="chatbox"></div>
+  <div id="chat-controls">
+    <input type="text" id="userInput" placeholder="Type your message..." />
+    <button id="sendBtn">Send</button>
+  </div>
 </div>
 
 <script>
+  const toggleBtn = document.getElementById("chatbot-toggle");
+  const chatbotContainer = document.getElementById("chatbot-container");
   const chatbox = document.getElementById("chatbox");
   const userInput = document.getElementById("userInput");
   const sendBtn = document.getElementById("sendBtn");
+
+  toggleBtn.onclick = () => {
+    chatbotContainer.style.display = chatbotContainer.style.display === "none" ? "flex" : "none";
+  };
 
   function appendMessage(sender, message) {
     chatbox.innerHTML += `<strong>${sender}:</strong> ${message}<br>`;
