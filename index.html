@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Embedded Chatbot</title>
+  <title>Chatbot Floating</title>
   <style>
-    body {
-      font-family: sans-serif;
+    html, body {
       margin: 0;
       padding: 0;
+      background: transparent;
+      height: 100%;
+      overflow: hidden;
     }
 
     #chatbot-toggle {
@@ -86,7 +88,8 @@
   const sendBtn = document.getElementById("sendBtn");
 
   toggleBtn.onclick = () => {
-    chatbotContainer.style.display = chatbotContainer.style.display === "none" ? "flex" : "none";
+    chatbotContainer.style.display =
+      chatbotContainer.style.display === "none" ? "flex" : "none";
   };
 
   function appendMessage(sender, message) {
